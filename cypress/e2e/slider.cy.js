@@ -16,3 +16,24 @@ describe('Swiper Gallery Test', function () {
     cy.get('.swiper-slide-active').should('contain', 'Paris');
   });
 });
+
+describe('Swiper Gallery Navigation and Description Test', function () {
+  it('Checks if user can navigate slides using navigation buttons and descriptions are correct', function () {
+    cy.visit('http://localhost:3000');
+
+    // Check initial slide
+    cy.get('.swiper-slide-active').should('contain', 'Rome').and('contain', 'Italy');
+
+    cy.get('.swiper-button-next').click();
+    cy.get('.swiper-slide-active').should('contain', 'London').and('contain', 'United Kingdom');
+
+    cy.get('.swiper-button-next').click();
+    cy.get('.swiper-slide-active').should('contain', 'Paris').and('contain', 'France');
+
+    cy.get('.swiper-button-prev').click();
+    cy.get('.swiper-slide-active').should('contain', 'London').and('contain', 'United Kingdom');
+
+    cy.get('.swiper-button-prev').click();
+    cy.get('.swiper-slide-active').should('contain', 'Rome').and('contain', 'Italy');
+  });
+});
